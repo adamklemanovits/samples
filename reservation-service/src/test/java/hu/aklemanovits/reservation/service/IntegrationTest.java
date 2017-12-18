@@ -40,5 +40,10 @@ public class IntegrationTest {
         assertThat(getResponse.getBody().getName()).isEqualTo(createResopone.getBody().getName());
         assertThat(getResponse.getBody().getTable()).isEqualTo(createResopone.getBody().getTable());
         assertThat(getResponse.getBody().getHeadCount()).isEqualTo(createResopone.getBody().getHeadCount());
+
+        testRestTemplate.delete("/reservations/" + getResponse.getBody().getId());
+        getResponse = testRestTemplate.getForEntity("/reservations/" + createResopone.getBody().getId(), Reservation.class);
+
+        assertThat(getResponse.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
 }
