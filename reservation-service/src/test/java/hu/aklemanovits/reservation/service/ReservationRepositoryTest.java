@@ -25,9 +25,9 @@ public class ReservationRepositoryTest {
 
     @Test
     public void findByName_shouldFindItemWithTheGiveName() {
-        Reservation persistedReservation = testEntityManager.persistFlushFind(new Reservation("test"));
+        Reservation persistedReservation = testEntityManager.persistFlushFind(new Reservation("test","1A",1));
 
-        Optional<Reservation> reservation = reservationRepository.findByName("test");
+        Optional<Reservation> reservation = reservationRepository.findByid(1L);
 
         assertThat(reservation.get()).isNotNull();
         assertThat(reservation.get().getName()).isEqualTo(persistedReservation.getName());
@@ -35,7 +35,7 @@ public class ReservationRepositoryTest {
 
     @Test
     public void findByName_shouldGiveEmptyOnItemNotFound() {
-        Optional<Reservation> reservation = reservationRepository.findByName("test");
+        Optional<Reservation> reservation = reservationRepository.findByid(1L);
 
         assertThat(reservation.isPresent()).isFalse();
     }
