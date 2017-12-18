@@ -23,4 +23,10 @@ public class ReservationService {
 
         return reservationRepository.save(reservation);
     }
+
+    public void deleteReservation(Long id) {
+        Assert.notNull(id, "Id can not be null!");
+
+        reservationRepository.delete(id);
+    }
 }

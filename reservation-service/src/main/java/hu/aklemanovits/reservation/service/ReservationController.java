@@ -1,6 +1,7 @@
 package hu.aklemanovits.reservation.service;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,6 +33,11 @@ public class ReservationController {
     @GetMapping("/{id}")
     public Reservation getReservation(@PathVariable Long id) {
         return reservationService.getReservationByid(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteReservation(@PathVariable Long id){
+        reservationService.deleteReservation(id);
     }
 
     @ExceptionHandler

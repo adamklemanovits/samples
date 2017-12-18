@@ -3,6 +3,8 @@ package hu.aklemanovits.reservation.service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,6 +36,7 @@ public class ReservationServiceTest {
         Reservation reservation = reservationService.getReservationByid(1L);
 
         assertThat(reservation.getName()).isEqualTo("test");
+        verify(reservationRepository,times(1)).findByid(1L);
     }
 
     @Test(expected = ReservationNotFoundException.class)
@@ -52,10 +55,24 @@ public class ReservationServiceTest {
         Reservation reservation = reservationService.createOrUpdateReservation(newReservation);
 
         assertThat(reservation.getId()).isNotNull();
+        verify(reservationRepository,times(1)).save(any(Reservation.class));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void createOrUpdateReservation_shouldThrowExceptionIfReservationIsNull() {
         reservationService.createOrUpdateReservation(null);
     }
+
+    @Test
+    public void deleteReservation_shouldDeleteReservation() {
+        reservationService.deleteReservation(1L);
+
+        verify(reservationRepository,times(1)).delete(1L);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void deleteReservation_shouldThrowExceptionIfReservationIsNull() {
+        reservationService.deleteReservation(null);
+    }
+
 }
