@@ -2,6 +2,7 @@ package hu.aklemanovits.reservation.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Matchers.any;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,17 +29,33 @@ public class ReservationServiceTest {
 
     @Test
     public void getReservationByName_shouldReturnReservationWithTheGivenName() {
-        given(reservationRepository.findByName("test")).willReturn(Optional.of(new Reservation("test")));
+        given(reservationRepository.findByid(1L)).willReturn(Optional.of(new Reservation(1L, "test", "1A", 1)));
 
-        Reservation reservation = reservationService.getReservationByName("test");
+        Reservation reservation = reservationService.getReservationByid(1L);
 
         assertThat(reservation.getName()).isEqualTo("test");
     }
 
     @Test(expected = ReservationNotFoundException.class)
     public void getReservationByName_shouldThrowExcepionIfItemNotFound() {
-        given(reservationRepository.findByName("test")).willReturn(Optional.empty());
+        given(reservationRepository.findByid(1L)).willReturn(Optional.empty());
 
-        Reservation reservation = reservationService.getReservationByName("test");
+        reservationService.getReservationByid(1L);
+    }
+
+    @Test
+    public void createOrUpdateReservation_shouldSaveNewReservation() {
+        Reservation newReservation = new Reservation("test", "1A", 1);
+        Reservation returnReservation = new Reservation(1L, "test", "1A", 1);
+        given(reservationRepository.save(any(Reservation.class))).willReturn(returnReservation);
+
+        Reservation reservation = reservationService.createOrUpdateReservation(newReservation);
+
+        assertThat(reservation.getId()).isNotNull();
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void createOrUpdateReservation_shouldThrowExceptionIfReservationIsNull() {
+        reservationService.createOrUpdateReservation(null);
     }
 }

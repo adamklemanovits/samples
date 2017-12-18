@@ -25,8 +25,20 @@ public class IntegrationTest {
 
     @Test
     public void integration() {
-        ResponseEntity<Reservation> response = testRestTemplate.getForEntity("/reservations/test", Reservation.class);
+        ResponseEntity<Reservation> createResopone = testRestTemplate.postForEntity("/reservations", new Reservation("test", "1A", 1), Reservation.class);
 
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
+        assertThat(createResopone.getStatusCode()).isEqualTo(HttpStatus.CREATED);
+        assertThat(createResopone.getBody().getId()).isNotNull();
+        assertThat(createResopone.getBody().getName()).isEqualTo("test");
+        assertThat(createResopone.getBody().getTable()).isEqualTo("1A");
+        assertThat(createResopone.getBody().getHeadCount()).isEqualTo(1);
+
+        ResponseEntity<Reservation> getResponse = testRestTemplate.getForEntity("/reservations/" + createResopone.getBody().getId(), Reservation.class);
+
+        assertThat(getResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(getResponse.getBody().getId()).isEqualTo(createResopone.getBody().getId());
+        assertThat(getResponse.getBody().getName()).isEqualTo(createResopone.getBody().getName());
+        assertThat(getResponse.getBody().getTable()).isEqualTo(createResopone.getBody().getTable());
+        assertThat(getResponse.getBody().getHeadCount()).isEqualTo(createResopone.getBody().getHeadCount());
     }
 }

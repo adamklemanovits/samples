@@ -23,7 +23,13 @@ public class Reservation {
 
     private String name;
 
-    public Reservation(final String name) {
+    private String table;
+
+    private Integer headCount;
+
+    public Reservation(final String name, final String table, final Integer headCount) {
         this.name = name;
+        this.table = table;
+        this.headCount = headCount;
     }
 }

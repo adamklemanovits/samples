@@ -3,10 +3,10 @@ import org.springframework.cloud.contract.spec.Contract
 import org.springframework.http.MediaType
 
 Contract.make {
-  description "should return a reservation with name 'test'"
+  description "should return a reservation"
 
   request {
-    url "/reservations/test"
+    url "/reservations/1"
     method GET()
   }
 
@@ -17,7 +17,7 @@ Contract.make {
     }
 
     body(
-            [id: 1L, name: "test"]
+            [id: 1L, name: "test", table: "1A", headCount: 1]
     )
   }
 }

@@ -1,6 +1,7 @@
 package hu.aklemanovits.reservation.service;
 
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Matchers.any;
 import io.restassured.module.mockmvc.RestAssuredMockMvc;
 import org.junit.Before;
 import org.junit.runner.RunWith;
@@ -24,7 +25,14 @@ public class CloudContractBaseClass {
 
     @Before
     public void setUp() throws Exception {
-        given(reservationService.getReservationByName("test")).willReturn(new Reservation(1L, "test"));
+        given(reservationService.getReservationByid(1L))
+                .willReturn(new Reservation(1L, "test","1A",1));
+
+        given(reservationService.getReservationByid(-1L))
+                .willThrow(new ReservationNotFoundException());
+
+        given(reservationService.createOrUpdateReservation(any(Reservation.class)))
+                .willReturn(new Reservation(1L, "test","1A",1));
 
         RestAssuredMockMvc.standaloneSetup(this.reservationController);
     }
