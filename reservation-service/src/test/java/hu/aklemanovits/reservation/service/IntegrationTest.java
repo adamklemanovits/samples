@@ -5,8 +5,6 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
@@ -40,6 +38,18 @@ public class IntegrationTest {
         assertThat(getResponse.getBody().getName()).isEqualTo(createResopone.getBody().getName());
         assertThat(getResponse.getBody().getTable()).isEqualTo(createResopone.getBody().getTable());
         assertThat(getResponse.getBody().getHeadCount()).isEqualTo(createResopone.getBody().getHeadCount());
+
+        getResponse.getBody().setHeadCount(2);
+
+        testRestTemplate.put("/reservations", getResponse.getBody());
+
+        ResponseEntity<Reservation> getUpdatedResponse = testRestTemplate.getForEntity("/reservations/" + getResponse.getBody().getId(), Reservation.class);
+
+        assertThat(getUpdatedResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(getUpdatedResponse.getBody().getId()).isEqualTo(getResponse.getBody().getId());
+        assertThat(getUpdatedResponse.getBody().getName()).isEqualTo(getResponse.getBody().getName());
+        assertThat(getUpdatedResponse.getBody().getTable()).isEqualTo(getResponse.getBody().getTable());
+        assertThat(getUpdatedResponse.getBody().getHeadCount()).isEqualTo(2);
 
         testRestTemplate.delete("/reservations/" + getResponse.getBody().getId());
         getResponse = testRestTemplate.getForEntity("/reservations/" + createResopone.getBody().getId(), Reservation.class);

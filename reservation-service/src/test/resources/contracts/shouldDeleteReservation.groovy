@@ -7,4 +7,8 @@ Contract.make {
     url "/reservations/1"
     method DELETE()
   }
+
+  response {
+    status 200
+  }
 }
