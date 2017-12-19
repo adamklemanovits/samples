@@ -12,7 +12,7 @@ public class ReservationServiceApplication {
     }
 
     @Bean
-    public ReservationService reservationService(ReservationRepository reservationRepository) {
+    ReservationService reservationService(ReservationRepository reservationRepository) {
         return new ReservationService(reservationRepository);
     }
 }
