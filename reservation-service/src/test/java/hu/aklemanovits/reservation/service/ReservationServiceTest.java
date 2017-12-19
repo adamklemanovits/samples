@@ -11,6 +11,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -75,4 +77,14 @@ public class ReservationServiceTest {
         reservationService.deleteReservation(null);
     }
 
+    @Test
+    public void getAllReservations_shouldReturnAllTheReservations() {
+        given(reservationRepository.findAll())
+                .willReturn(Arrays.asList(new Reservation(1L,"test","1A",1),
+                                          new Reservation(2L,"test2","1B",2)));
+
+        List<Reservation> reservationList = reservationService.getAllReservations();
+
+        assertThat(reservationList.size()).isEqualTo(2);
+    }
 }

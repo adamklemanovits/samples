@@ -2,6 +2,9 @@ package hu.aklemanovits.reservation.service;
 
 import org.springframework.util.Assert;
 
+import java.util.Collection;
+import java.util.List;
+
 /**
  * @author aklemanovits on 2017. 12. 15.
  */
@@ -28,5 +31,9 @@ public class ReservationService {
         Assert.notNull(id, "Id can not be null!");
 
         reservationRepository.delete(id);
+    }
+
+    public List<Reservation> getAllReservations() {
+        return reservationRepository.findAll();
     }
 }

@@ -2,6 +2,7 @@ package hu.aklemanovits.reservation.service;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
+import org.apache.tools.ant.taskdefs.condition.Http;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,9 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.Collection;
+import java.util.List;
 
 /**
  * @author aklemanovits on 2017. 12. 15.
@@ -24,12 +28,18 @@ public class IntegrationTest {
     @Test
     public void integration() {
         ResponseEntity<Reservation> createResopone = testRestTemplate.postForEntity("/reservations", new Reservation("test", "1A", 1), Reservation.class);
+        testRestTemplate.postForEntity("/reservations", new Reservation("test2", "1B", 2), Reservation.class);
 
         assertThat(createResopone.getStatusCode()).isEqualTo(HttpStatus.CREATED);
         assertThat(createResopone.getBody().getId()).isNotNull();
         assertThat(createResopone.getBody().getName()).isEqualTo("test");
         assertThat(createResopone.getBody().getTable()).isEqualTo("1A");
         assertThat(createResopone.getBody().getHeadCount()).isEqualTo(1);
+
+        ResponseEntity<Collection> listResponse = testRestTemplate.getForEntity("/reservations", Collection.class);
+
+        assertThat(listResponse.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(listResponse.getBody().size()).isEqualTo(2);
 
         ResponseEntity<Reservation> getResponse = testRestTemplate.getForEntity("/reservations/" + createResopone.getBody().getId(), Reservation.class);
 

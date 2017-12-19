@@ -10,6 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Arrays;
+
 /**
  * @author aklemanovits on 2017. 12. 18.
  */
@@ -33,6 +35,10 @@ public class CloudContractBaseClass {
 
         given(reservationService.createOrUpdateReservation(any(Reservation.class)))
                 .willReturn(new Reservation(1L, "test","1A",1));
+
+        given(reservationService.getAllReservations())
+                .willReturn(Arrays.asList(new Reservation(1L, "test", "1A", 1),
+                                          new Reservation(2L,"test2","1B",2)));
 
         RestAssuredMockMvc.standaloneSetup(this.reservationController);
     }

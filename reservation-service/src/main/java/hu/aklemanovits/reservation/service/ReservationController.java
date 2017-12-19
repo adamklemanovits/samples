@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collection;
+
 /**
  * @author aklemanovits on 2017. 12. 15.
  */
@@ -34,6 +36,11 @@ public class ReservationController {
     @PutMapping
     public void updateReservation(@RequestBody Reservation reservation) {
         reservationService.createOrUpdateReservation(reservation);
+    }
+
+    @GetMapping
+    public Collection<Reservation> getAllReservations(){
+        return reservationService.getAllReservations();
     }
 
     @GetMapping("/{id}")
