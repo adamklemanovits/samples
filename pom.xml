@@ -12,6 +12,7 @@
 
 	<modules>
 		<module>service-registry</module>
+		<module>auth-service</module>
 		<module>reservation-service</module>
 	</modules>
 
