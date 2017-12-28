@@ -15,6 +15,7 @@
 		<module>auth-service</module>
 		<module>reservation-service</module>
 		<module>reservation-vaadin-ui</module>
+		<module>reservation-thymeleaf-ui</module>
 	</modules>
 
 	<build>
