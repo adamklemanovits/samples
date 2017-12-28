@@ -20,13 +20,11 @@ public class AuthServiceApplication {
     @Bean
     CommandLineRunner commandLineRunner(RoleRepository roleRepository, AccountRepository accountRepository) {
         return args -> {
-            List<Role> roles = roleRepository.save(Arrays.asList(new Role("ROLE_ADMIN"), new Role("ROLE_USER")));
+            List<Role> roles = roleRepository.save(Arrays.asList(new Role("ROLE_RESERVATION_VAADIN_UI_USER"), new Role("ROLE_USER")));
             Account account = new Account("aklemanovits", "password", true, false);
             account.setAuthorites(new HashSet<>(roles));
 
             accountRepository.save(account);
-
-            System.out.println(accountRepository.findAll());
         };
     }
 

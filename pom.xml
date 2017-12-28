@@ -14,6 +14,7 @@
 		<module>service-registry</module>
 		<module>auth-service</module>
 		<module>reservation-service</module>
+		<module>reservation-vaadin-ui</module>
 	</modules>
 
 	<build>

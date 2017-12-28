@@ -17,19 +17,19 @@ public class AccountUserDetailsService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(final String s) throws UsernameNotFoundException {
-        return accountRepository.findByUsername(s)
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return accountRepository.findByUsername(username)
                 .map(this::toUser)
-                .orElseThrow(() -> new UsernameNotFoundException("Username: " + s + " not found."));
+                .orElseThrow(() -> new UsernameNotFoundException("Username: " + username + " not found."));
     }
 
-    private User toUser(Account account){
+    private User toUser(Account account) {
         return new User(account.getUsername(),
-                             account.getPassword(),
-                             account.getActive(),
-                             !account.getLocked(),
-                             !account.getLocked(),
-                             !account.getLocked(),
-                             account.getAuthorites());
+                        account.getPassword(),
+                        account.getActive(),
+                        !account.getLocked(),
+                        !account.getLocked(),
+                        !account.getLocked(),
+                        account.getAuthorites());
     }
 }
