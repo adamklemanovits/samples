@@ -3,6 +3,7 @@ package hu.aklemanovits.auth.service;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -11,6 +12,7 @@ import java.util.HashSet;
 import java.util.List;
 
 @SpringBootApplication
+@EnableEurekaClient
 public class AuthServiceApplication {
 
     public static void main(String[] args) {
