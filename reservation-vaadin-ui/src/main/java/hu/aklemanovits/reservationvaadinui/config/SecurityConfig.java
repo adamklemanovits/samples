@@ -17,7 +17,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/","/**").access("hasRole('ROLE_RESERVATION_VAADIN_UI_USER')")
+                .antMatchers("/**").access("hasRole('RESERVATION_VAADIN_UI_USER')")
                 .anyRequest()
                 .authenticated();
     }

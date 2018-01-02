@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -24,7 +26,7 @@ public class AuthServiceApplication {
         return args -> {
             List<Role> roles = roleRepository.save(Arrays.asList(new Role("ROLE_RESERVATION_VAADIN_UI_USER"),
                                                                  new Role("ROLE_RESERVATION_THYMELEAF_UI_USER")));
-            Account account = new Account("aklemanovits", "password", true, false);
+            Account account = new Account("aklemanovits", "$2a$10$xotsjaICTaw57vrJ8x0w9eGpBM/YEwREzjyNfIZtHAOp76uBas.H6", true, false);
             account.setAuthorites(new HashSet<>(roles));
 
             accountRepository.save(account);
@@ -34,5 +36,10 @@ public class AuthServiceApplication {
     @Bean
     UserDetailsService userDetailsService(AccountRepository accountRepository) {
         return new AccountUserDetailsService(accountRepository);
+    }
+
+    @Bean
+    PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
     }
 }

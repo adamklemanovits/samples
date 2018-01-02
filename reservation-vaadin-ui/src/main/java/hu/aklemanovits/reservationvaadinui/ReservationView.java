@@ -1,5 +1,6 @@
 package hu.aklemanovits.reservationvaadinui;
 
+import static com.vaadin.server.Sizeable.Unit.*;
 import static com.vaadin.ui.Grid.SelectionMode.SINGLE;
 import static hu.aklemanovits.reservationvaadinui.ViewNames.RESERVATIONS;
 import com.vaadin.data.provider.DataProvider;
@@ -35,10 +36,12 @@ public class ReservationView extends VerticalLayout implements View, Initializin
         delete.addClickListener(event -> {
             reservationService.deleteReservation(reservationGrid.getSelectedItems().iterator().next().getId());
             reservationGrid.getDataProvider().refreshAll();
+            update.setEnabled(false);
+            delete.setEnabled(false);
         });
 
-        reservationGrid.setWidth(100, Unit.PERCENTAGE);
-        reservationGrid.setHeight(380, Unit.PIXELS);
+        reservationGrid.setWidth(100, PERCENTAGE);
+        reservationGrid.setHeight(380, PIXELS);
         reservationGrid.addColumn(Reservation::getId).setCaption("Id");
         reservationGrid.addColumn(Reservation::getName).setCaption("Name");
         reservationGrid.addColumn(Reservation::getTable).setCaption("Table");
@@ -58,7 +61,5 @@ public class ReservationView extends VerticalLayout implements View, Initializin
         addComponent(new Label("Hello " + UI.getCurrent().getData()));
         addComponent(new HorizontalLayout(create, update, delete));
         addComponent(reservationGrid);
-
-
     }
 }
