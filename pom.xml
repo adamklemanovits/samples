@@ -1,23 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-	<groupId>hu.aklemanovits.samples</groupId>
-	<artifactId>samples-builder</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>pom</packaging>
+  <groupId>hu.aklemanovits.samples</groupId>
+  <artifactId>samples-builder</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
 
-	<name>samples builder</name>
+  <name>samples builder</name>
 
-	<modules>
-		<module>parent</module>
-		<module>config-service</module>
-		<module>service-registry</module>
-		<module>auth-service</module>
-		<module>reservation-service</module>
-		<module>reservation-vaadin-ui</module>
-		<module>reservation-thymeleaf-ui</module>
-	</modules>
+  <modules>
+    <module>parent</module>
+    <module>config-service</module>
+    <module>service-registry</module>
+    <module>auth-service</module>
+    <module>reservation-service</module>
+    <module>reservation-vaadin-ui</module>
+    <module>reservation-thymeleaf-ui</module>
+  </modules>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.spotify</groupId>
+        <artifactId>docker-maven-plugin</artifactId>
+        <version>1.0.0</version>
+        <configuration>
+          <skipDocker>true</skipDocker>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>
