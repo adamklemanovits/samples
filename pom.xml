@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>hu.aklemanovits</groupId>
+	<groupId>hu.aklemanovits.samples</groupId>
 	<artifactId>samples-builder</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
@@ -11,6 +11,7 @@
 	<name>samples builder</name>
 
 	<modules>
+		<module>config-service</module>
 		<module>service-registry</module>
 		<module>auth-service</module>
 		<module>reservation-service</module>
