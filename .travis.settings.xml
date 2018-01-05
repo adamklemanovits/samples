@@ -2,7 +2,7 @@
   <servers>
     <server>
       <id>docker-hub</id>
-      <username>aklemanovits</username>
+      <username>adamklemanovits</username>
       <password>${env.DOCKER_HUB_PASSWORD}</password>
     </server>
   </servers>
