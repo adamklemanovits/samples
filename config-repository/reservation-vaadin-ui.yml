@@ -1,7 +1,3 @@
-spring:
-  application:
-    name: reservation-vaadin-ui
-
 server:
   port: 8080
   session:

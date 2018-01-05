@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: reservation-vaadin-ui
+  cloud:
+    config:
+      uri: http://localhost:8888
