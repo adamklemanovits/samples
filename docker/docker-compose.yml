@@ -1,0 +1,22 @@
+version: '3'
+services:
+  service-registry:
+    image: adamklemanovits/service-registry:latest
+    ports:
+      - 8761:8761
+  config-service:
+    image: adamklemanovits/config-service:latest
+    ports:
+      - 8888:8888
+  auth-service:
+    image: adamklemanovits/auth-service:latest
+    ports:
+      - 9191:9191
+  reservation-service:
+    image: adamklemanovits/reservation-service:latest
+    ports:
+      - 8090:8090
+  reservation-vaadin-ui:
+    image: adamklemanovits/reservation-vaadin-ui:latest
+    ports:
+      - 8080:8080
