@@ -1,1 +1,7 @@
 language: java
+
+notifications:
+  email:
+    recipients:
+      - adamklemanovits@gmail.com
+    on_success: never

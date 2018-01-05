@@ -11,6 +11,7 @@
 	<name>samples builder</name>
 
 	<modules>
+		<module>parent</module>
 		<module>config-service</module>
 		<module>service-registry</module>
 		<module>auth-service</module>

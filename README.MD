@@ -1,0 +1,1 @@
+[![Build Status](https://travis-ci.org/adamklemanovits/samples.svg?branch=master)](https://travis-ci.org/adamklemanovits/samples)
