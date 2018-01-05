@@ -1,14 +1,24 @@
 language: java
 
-services:
-  - docker
-
 notifications:
   email:
     recipients:
       - adamklemanovits@gmail.com
     on_success: never
 
+services:
+  - docker
+
+cache:
+  directories:
+  - "$HOME/.cache"
+
+deploy:
+  provider: script
+  script: 'cp .travis.settings.xml $HOME/.m2/settings.xml && mvn docker:build -pl "!parent"'
+  skip_cleanup: true
+  on:
+    tags: false
+
 after_success:
   - bash <(curl -s https://codecov.io/bash)
-  - mvn clean package docker:build
