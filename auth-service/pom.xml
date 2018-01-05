@@ -51,4 +51,19 @@
 		</dependency>
 	</dependencies>
 
+	<!--<build>-->
+		<!--<plugins>-->
+			<!--<plugin>-->
+				<!--<groupId>com.spotify</groupId>-->
+				<!--<artifactId>docker-maven-plugin</artifactId>-->
+				<!--<version>1.0.0</version>-->
+				<!--<configuration>-->
+					<!--<imageName>${artifactId}</imageName>-->
+					<!--<baseImage>java</baseImage>-->
+					<!--<serverId>docker-hub</serverId>-->
+					<!--<registryUrl>https://index.docker.io/v1/</registryUrl>-->
+				<!--</configuration>-->
+			<!--</plugin>-->
+		<!--</plugins>-->
+	<!--</build>-->
 </project>
