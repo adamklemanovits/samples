@@ -1,5 +1,8 @@
 language: java
 
+services:
+  - docker
+
 notifications:
   email:
     recipients:
@@ -8,3 +11,4 @@ notifications:
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+  - mvn clean package docker:build
