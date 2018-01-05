@@ -14,7 +14,7 @@
 		<groupId>hu.aklemanovits.samples</groupId>
 		<artifactId>samples-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<relativePath>../parent/pom.xml</relativePath> <!-- lookup parent from repository -->
 	</parent>
 
 	<dependencies>
