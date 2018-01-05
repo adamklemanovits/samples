@@ -96,7 +96,7 @@
         <artifactId>spring-cloud-contract-maven-plugin</artifactId>
         <extensions>true</extensions>
         <configuration>
-          <baseClassForTests>hu.aklemanovits.reservation.service.CloudContractBaseClass</baseClassForTests>
+          <baseClassForTests>hu.aklemanovits.samples.reservation.CloudContractBaseClass</baseClassForTests>
         </configuration>
       </plugin>
       <plugin>

@@ -29,37 +29,37 @@ public class ReservationController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Reservation createReservation(@RequestBody Reservation reservation) {
+    Reservation createReservation(@RequestBody Reservation reservation) {
         return reservationService.createOrUpdateReservation(reservation);
     }
 
     @PutMapping
-    public void updateReservation(@RequestBody Reservation reservation) {
+    void updateReservation(@RequestBody Reservation reservation) {
         reservationService.createOrUpdateReservation(reservation);
     }
 
     @GetMapping
-    public Collection<Reservation> getAllReservations(){
+    Collection<Reservation> getAllReservations(){
         return reservationService.getAllReservations();
     }
 
     @GetMapping("/{id}")
-    public Reservation getReservation(@PathVariable Long id) {
+    Reservation getReservation(@PathVariable Long id) {
         return reservationService.getReservationByid(id);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteReservation(@PathVariable Long id){
+    void deleteReservation(@PathVariable Long id){
         reservationService.deleteReservation(id);
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public void handleNoReservationFound(ReservationNotFoundException ex) {
+    void handleNoReservationFound(ReservationNotFoundException ex) {
     }
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public void handleInvalidRequest(IllegalArgumentException ex) {
+    void handleInvalidRequest(IllegalArgumentException ex) {
     }
 }

@@ -18,9 +18,4 @@ public class ReservationServiceApplication {
     ReservationService reservationService(ReservationRepository reservationRepository) {
         return new ReservationService(reservationRepository);
     }
-
-    @Bean
-    CommandLineRunner commandLineRunner(ReservationRepository reservationRepository) {
-        return args -> reservationRepository.save(new Reservation("Test-name", "Test-table", 10));
-    }
 }
