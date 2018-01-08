@@ -3,7 +3,7 @@ eureka:
     renewalPercentThreshold: 0.49
   instance:
     appname: service-registry
-    hostname: localhost
+    hostname: service-registry
   client:
     registerWithEureka: false
     fetchRegistry: false
