@@ -8,7 +8,7 @@ eureka:
   client:
     registerWithEureka: false
     serviceUrl:
-      defaultZone: service-registry:8761/eureka/
+      defaultZone: http://service-registry:8761/eureka/
 
 security:
   basic:
@@ -17,7 +17,7 @@ security:
     client:
       clientId: html5
       clientSecret: password
-      accessTokenUri: auth-service:9191/uaa/oauth/token
-      userAuthorizationUri: auth-service:9191/uaa/oauth/authorize
+      accessTokenUri: http://auth-service:9191/uaa/oauth/token
+      userAuthorizationUri: http://auth-service:9191/uaa/oauth/authorize
     resource:
-      userInfoUri: auth-service:9191/uaa/user
+      userInfoUri: http://auth-service:9191/uaa/user
