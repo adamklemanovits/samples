@@ -3,4 +3,4 @@ spring:
     name: reservation-vaadin-ui
   cloud:
     config:
-      uri: http://config-service:8888
+      uri: config-service:8888

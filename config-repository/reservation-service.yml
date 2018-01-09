@@ -6,7 +6,7 @@ eureka:
     healthcheck:
       enabled: true
     serviceUrl:
-      defaultZone: http://service-registry:8761/eureka/
+      defaultZone: service-registry:8761/eureka/
 
 server:
   port: 8090

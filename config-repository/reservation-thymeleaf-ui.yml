@@ -11,7 +11,7 @@ security:
     client:
       clientId: html5
       clientSecret: password
-      accessTokenUri: http://auth-service:9191/uaa/oauth/token
-      userAuthorizationUri: http://auth-service:9191/uaa/oauth/authorize
+      accessTokenUri: auth-service:9191/uaa/oauth/token
+      userAuthorizationUri: auth-service:9191/uaa/oauth/authorize
     resource:
-      userInfoUri: http://auth-service:9191/uaa/user
+      userInfoUri: auth-service:9191/uaa/user
