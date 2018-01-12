@@ -3,4 +3,4 @@ spring:
     name: auth-service
   cloud:
     config:
-      uri: config-service:8888
+      uri: http://config-service:8888
